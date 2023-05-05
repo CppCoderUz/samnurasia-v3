@@ -1,0 +1,59 @@
+.main{
+    width: 100%;
+    height: auto;
+    background: rgb(231, 231, 234);
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.buttons{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.button{
+    width: 250px !important;
+    height: auto;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.button h3{
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.journal{
+    width: 80%;
+    background: #fff;
+    margin: 20px;
+    padding: 20px;
+    display: none;
+}
+
+.block{
+    display: block;
+}
+
+
+.display-flex {
+    width: 250px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn1 , #btn2 {
+    width: 250px !important;
+    margin: 10px;
+} 

@@ -1,0 +1,20 @@
+#main{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box{
+    position: absolute;
+    width: auto;
+    height: auto;
+    display: none;
+    padding: 25px;
+    background: rgb(222, 215, 215);
+
+}
+
+.block{
+    display:block;
+}

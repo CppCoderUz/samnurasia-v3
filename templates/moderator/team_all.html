@@ -1,0 +1,56 @@
+{% extends 'moderator/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table align-middle table-nowrap table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" style="width: 70px;">#</th>
+                                <th scope="col">Ism </th>
+                                <th scope="col">Familya</th>
+                                <th scope="col">Vazifasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <td>
+                                    <div class="avatar-xs">
+                                        <span class="avatar-title rounded-circle">
+                                            <img src="{{i.image.url}}" alt="" class="rounded-circle" height="40" width="40">
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="{% url 'team_update' i.pk %}">{{i.first_name}}</a>
+                                </td>
+                                <td>{{i.last_name}}</td>
+                                <td>{{i.role}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 ">
+        <div class="card card-body text-center">
+            <h4 class="card-title">Jamoaga yangi odam qo'shish</h4>
+            <p class="card-text">
+                Jamoaga yangi odam qo'shish mumkin. Bunda ushbu jamoa a'zosi saytda hech qanday vazifa bajara olmaydi. 
+                Faqatgina bosh sahifada ko'rinadigan bizning jamoa qismida bo'ladi.  
+            </p>
+            <a href="{% url 'team_create' %}" class="btn btn-primary waves-effect waves-light">Odam qo'shish</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

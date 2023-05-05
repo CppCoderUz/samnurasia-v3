@@ -1,0 +1,39 @@
+{% extends 'pages/base.html' %}
+
+
+{% block content %}
+ <!-- ======= Team Section ======= -->
+ <section id="team" class="team section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2> Bizning Jamoamiz </h2>
+        <p>
+            Loyiha uchun o'z hissasini qo'shayotgan insonlar
+        </p>
+    </div>
+
+      <div class="row">
+
+        {% for i in data %}
+        <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+          <div class="member d-flex align-items-start">
+            <div class="pic"><img src="{{i.image.url}}" class="img-fluid" alt=""></div>
+            <div class="member-info">
+              <h4> {{i.last_name}} {{i.first_name}} </h4>
+              <span>{{i.role}}</span>
+                <p>
+                    {{i.description}}
+                </p>
+              <div class="social">
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </section><!-- End Team Section -->
+{% endblock %}

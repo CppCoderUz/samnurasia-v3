@@ -1,0 +1,173 @@
+{% extends 'pages/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section id="about" class="about">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Biz haqimizda</h2>
+    </div>
+    <div class="row content">
+      {{about.body|safe}}
+    </div>
+  </div>
+</section>
+
+<section id="article" class="article">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Maqola joylash tartibi</h2>
+      </div>
+
+      <div class="row content">
+        {{article.body|safe}}
+      </div>
+
+    </div>
+  </section>
+
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2> Xizmatlarimiz </h2>
+      <p>
+        Biz bilan hamkorlik qilsangiz sizga quyidagi xizmatlarni taklif qila olamiz.
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-globe"></i></div>
+          <h4><a href="">Maqola joylashtirish</a></h4>
+          <p> 
+            Siz ushbu funksiya orqali biron mavzu yuzasidan maqola joylashtirishingiz mumkin. 
+            Bunda maqolangizni istalgan odam ko'ra oladi
+            </p>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-file"></i></div>
+          <h4><a href="">Jurnal uchun maqola joylashtirish</a></h4>
+          <p> Siz tanlagan jurnalga yuborgan maqolangiz joylanadi. </p>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-layer"></i></div>
+          <h4><a href="">Hamkorlikni boshlash</a></h4>
+          <p>Biz bilan hamkorlik qilish orqali bilimingizni yuksaltiring</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======= Pricing Section ======= -->
+<section id="pricing" class="pricing">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Maqola joylash narxlari</h2>
+        <p>
+            
+        </p>
+    </div>
+
+    <div class="row">
+        {{price.body|safe}}
+    </div>
+
+  </div>
+</section><!-- End Pricing Section -->
+
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Ariza qoldirish</h2>
+        <p>
+            Maqola joylash uchun ariza yuborishingiz mumkin. Yoki to'g'ridan-to'g'ri ko'rsatilgan email manziliga xabar yuborib
+            maqolangizni bizning saytga joylashingiz mumkin.
+        </p>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-5 d-flex align-items-stretch">
+        <div class="info">
+          <div class="address">
+            <i class="bi bi-geo-alt"></i>
+            <h4>Manzil:</h4>
+            <p>{{manzil}}</p>
+          </div>
+
+          <div class="email">
+            <i class="bi bi-envelope"></i>
+            <h4>E-mail:</h4>
+            <p>info@example.com</p>
+          </div>
+
+          <div class="phone">
+            <i class="bi bi-phone"></i>
+            <h4>Telefon nomer:</h4>
+            <p>+1 5589 55488 55s</p>
+          </div>
+
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3070.9196850475987!2d66.93216437499642!3d39.67402120050983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f4d191024db16c5%3A0x1fea7e4da9a8531a!2sELXOLDING!5e0!3m2!1suz!2s!4v1682935167309!5m2!1suz!2s" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+        </div>
+
+      </div>
+
+      <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+        <form method="POST" class="php-email-form" action="{% url 'index' %}" enctype="multipart/form-data"> 
+          {% csrf_token %}
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="first_name">Ismingizni kiriting: </label>
+              <input type="text" name="first_name" class="form-control" id="first_name" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="last_name">familyangizni kiriting: </label>
+              <input type="text" class="form-control" name="last_name" id="last_name" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="email">Email manzilingizni kiriting: </label>
+              <input type="email" name="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="title">Maqola sarlavhasini kiriting: </label>
+              <input type="text" class="form-control" name="title" id="title" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="file">Maqola faylini yuklang: </label>
+            <input type="file" class="form-control" name="file" id="file" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Maqola haqida batafsil yozing: </label>
+            <textarea class="form-control" name="message" rows="10" required id="message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Yuborish</button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

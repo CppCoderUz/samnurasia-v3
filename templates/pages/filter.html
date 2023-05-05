@@ -1,0 +1,22 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+<main id="main">
+
+    <div class="list-group">
+        {% for i in data %}
+        <a href="{{i.file.url}}" class="list-group-item list-group-item-action flex-column align-items-start" download="">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{i.title}}</h5>
+            <small></small>
+          </div>
+          <p class="mb-1">{{i.description}}</p>
+          <small>{{i.last_name}} {{i.first_name}}</small>
+        </a>
+        {% endfor %}
+      </div>
+
+
+
+  </main><!-- End #main -->
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'moderator/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"> {{object}} </h4>
+                <p class="card-title-desc"> </p>
+                <form class="custom-validation" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                    <div class="col-md-6">
+                        <label for="horizontal-first_name-input" class="col-sm-3 col-form-label">Ismi </label>
+                        <div class="col-sm-9">
+                          <input name="first_name" type="text" class="form-control" id="horizontal-first_name-input" placeholder="" required value="{{object.user.first_name}}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="horizontal-last_name-input" class="col-sm-3 col-form-label">Familyasi </label>
+                        <div class="col-sm-9">
+                          <input name="last_name" type="text" class="form-control" id="horizontal-last_name-input" placeholder="" required value="{{object.user.last_name}}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="horizontal-role-input" class="col-sm-3 col-form-label">Vazifasi </label>
+                        <div class="col-sm-9">
+                          <input name="role" type="text" class="form-control" id="horizontal-role-input" placeholder="" required value="{{object.role}}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="horizontal-email-input" class="col-sm-3 col-form-label">E-mail manzili </label>
+                        <div class="col-sm-9">
+                          <input name="email" type="email" class="form-control" id="horizontal-email-input" placeholder="" required value="{{object.user.email}}">
+                        </div>
+                    </div>
+
+                    <div class="col-10 form-check form-switch form-switch-md" style="padding-top: 20px;left: 10px;">
+                        <input class="form-check-input" name="active" type="checkbox" id="SwitchCheckSizemd" {% if object.user.is_active == True %} checked {% endif %}>
+                        <label class="form-check-label" for="SwitchCheckSizemd"> Holati </label>
+                    </div>
+                    <br><br>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">
+                            Saqlash
+                        </button>
+                        <a href="{% url 'moderator_delete' object.pk %}" class="btn btn-danger">
+                            O'chirish
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}

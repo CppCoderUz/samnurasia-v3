@@ -1,0 +1,203 @@
+<!doctype html> {% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> SamNurAsia moderator sahifasi </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'skote/assets/images/favicon.ico' %}">
+    <link href="{% static 'skote/assets/css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static 'skote/assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'skote/assets/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+    {% block head_static %}{% endblock %}
+</head>
+{% if user.dark_mode == True %}
+
+<body data-sidebar="dark" data-layout-mode="dark">
+    {% else %}
+<body data-sidebar="light" data-layout-mode="light">
+        {% endif %}
+        <div id="layout-wrapper">
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="#" class="logo logo-dark" style="pointer-events: none;">
+                                <span class="logo-lg">
+                                    <img src="{% static 'image/samnurasia_favicon_light.jpg.png' %}" alt="" height="17">
+                                </span>
+                            </a>
+                            <a href="#" class="logo logo-light" style="pointer-events: none;">
+                                <span class="logo-lg">
+                                    <img src="{% static 'image/dark.png' %}" alt="" height="22">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect"
+                            id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect"
+                                data-bs-toggle="fullscreen">
+                                <i class="bx bx-fullscreen"></i>
+                            </button>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user"
+                                    src="{% if user.image %}{{user.image.url}}{% else %}{% static 'skote/assets/images/users/avatar_default.png' %}{% endif %}"
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ user.username }}</span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="{% url 'profile_view' %}"><i
+                                        class="bx bx-user font-size-16 align-middle me-1"></i> <span
+                                        key="t-profile">Profile</span></a>
+                                <a class="dropdown-item d-block" href="{% url 'profile_update' %}"><i
+                                        class="bx bx-wrench font-size-16 align-middle me-1"></i> <span
+                                        key="t-settings">Settings</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="{% url 'logout' %}"><i
+                                        class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span
+                                        key="t-logout">Logout</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="vertical-menu">
+                <div data-simplebar class="h-100">
+                    <div id="sidebar-menu">
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li>
+                                <a href="{% url 'dashboard' %}" >
+                                    <i class="bx bx-home-circle"></i>
+                                    <span key="t-dashboards"> Bosh sahifa </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'all_posts' %}">
+                                    <i class="bx bx-world"></i>
+                                    <span key="t-dashboards"> Postlar </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'all_article' %}">
+                                    <i class="bx bx-world"></i>
+                                    <span key="t-dashboards"> Maqolalar </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'journal_all' %}">
+                                    <i class="bx bx-book-bookmark"></i>
+                                    <span key="t-dashboards"> Jurnallar </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'article_col_all' %}" class="waves-effect">
+                                    <i class="bx bx-right-indent"></i>
+                                    <span key="t-chat"> Maqola ruknlari </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'petition_all' %}" class="waves-effect">
+                                    <i class="bx bxl-whatsapp"></i>
+                                    <span key="t-file-manager">Arizalar</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'moderator_all' %}" class="waves-effect">
+                                    <i class="bx bx-user-check"></i>
+                                    <span key="t-file-manager">Sayt moderatorlari</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'team_all' %}" class="waves-effect">
+                                    <i class="bx bx-user"></i>
+                                    <span key="t-file-manager"> Jamoa </span>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="#" class="has-arrow waves-effect">
+                                    <i class="bx bx-user-circle"></i>
+                                    <span key="t-ecommerce">Avtorizatsiya</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{% url 'profile_view' %}" key="t-products">Mening profilim</a></li>
+                                    <li><a href="{% url 'profile_update' %}" key="t-orders">Hisobni yangilash</a></li>
+                                    <li><a href="{% url 'logout' %}" key="t-customers">Hisobdan chiqish</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+                        {% if messages %}
+                        {% for msg in messages %}
+                        <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                            {{ msg }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        <!-- {% block page_title %}{% endblock %} -->
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script> © SamNurAsia
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    This site was developed by <a href="#">Space Engineering</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="rightbar-overlay"></div>
+        <script src="{% static 'skote/assets/libs/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'skote/assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'skote/assets/libs/metismenu/metisMenu.min.js' %}"></script>
+        <script src="{% static 'skote/assets/libs/simplebar/simplebar.min.js' %}"></script>
+        <script src="{% static 'skote/assets/libs/node-waves/waves.min.js' %}"></script>
+        <script src="{% static 'skote/assets/libs/apexcharts/apexcharts.min.js' %}"></script>
+        <script src="{% static 'skote/assets/js/pages/dashboard.init.js' %}"></script>
+        <script src="{% static 'skote/assets/js/app.js' %}"></script>
+        <script>
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $(".alert").alert('close');
+                }, 5500);
+            });
+        </script>
+        {% block body_static %}{% endblock %}
+    </body>
+
+</html>

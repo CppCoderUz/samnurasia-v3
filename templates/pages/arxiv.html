@@ -1,0 +1,44 @@
+
+
+{% extends 'pages/base.html' %}
+
+ 
+{% block content %}
+<section class="main">
+    <div class="buttons row" >
+        <div class="col-md-6 display-flex">
+          <div type="button" class="btn btn-outline-secondary" id="btn1">
+            <h3>Jurnallar</h3>
+        </div>
+        </div>
+        <div class="col-md-6 display-flex">
+          <div type="button" class="btn btn-outline-secondary" id="btn2">
+            <h3>Maqola Ruknlari</h3>
+        </div>
+        </div>
+    </div>
+    <div class="journal" id="journal">
+        {% for i in journals %}
+        <a href="{% url 'detail_journal' i.pk %}">{{i.name}}</a>
+        <br>
+        <br>
+        {% endfor %}
+      </div>
+    <div class="journal" id="article">
+        {% for i in cols %}
+        <a href="{% url 'detail_col' i.pk %}">{{i.name}}</a>
+        <br>
+        <br>
+        {% endfor %}
+      </div>
+  </section>
+{% endblock %}
+
+{% load static %}
+{% block js %}
+<script src="{% static 'pages/arxiv.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'pages/arxiv.css' %}">
+{% endblock %}
