@@ -36,10 +36,12 @@ class ModeratorUserForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'body']    
+        fields = ['title', 'body', 'image']    
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
         self.fields['title'].widget.attrs.update({'class': 'form-control'})
+        self.fields['image'].widget.attrs.update({'class': 'form-control'})
+        self.fields['image'].required = True
 
 
 class JournalForm(forms.ModelForm):

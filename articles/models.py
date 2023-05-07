@@ -102,8 +102,10 @@ class Article(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(Moderator, on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
-
     body = RichTextField()
+
+    date_time = models.DateTimeField(auto_now_add=True, null=True)
+    image = models.ImageField(upload_to='images/post', null=True)
 
     def __str__(self) -> str:
         return self.title

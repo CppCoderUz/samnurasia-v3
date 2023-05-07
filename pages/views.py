@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.handlers.wsgi import WSGIRequest
+from django.http import HttpResponse
 
 from pages.models import (
     Eslatma,
@@ -10,6 +11,8 @@ from pages.models import (
     Narxlar,
     Team,
 )
+
+from moderator.models import Moderator
 
 from articles.models import Post
 
@@ -68,6 +71,8 @@ def index(request: WSGIRequest):
         'about': Eslatma.object(),
         'article': MaqolaJoylash.object(),
         'price': Narxlar.object(),
+        'icon': Icon.object(),
+        'data': Team.objects.all()[:4]
     })
 
 
@@ -75,7 +80,8 @@ def index(request: WSGIRequest):
 # DONE
 def team_views(request: WSGIRequest):
     return render(request, 'pages/team.html', {
-        'data': Team.objects.all()
+        'data': Team.objects.all(),
+        'icon': Icon.object(),
     })
 
 
@@ -91,7 +97,8 @@ def news(request: WSGIRequest, *args, **kwargs):
         random_obj = Post.objects.get(pk=random_pk)
     return render(request, 'pages/news.html', {
         'object': random_obj,
-        'object_list': Post.objects.all()
+        'object_list': Post.objects.all(),
+        'icon': Icon.object(),
     })
 
 
@@ -102,21 +109,41 @@ def arxiv(request: WSGIRequest):
     return render(request, 'pages/arxiv.html', {
         'journals': journals,
         'cols': cols,
+        'icon': Icon.object(),
     })
 
 
 
 def detail_journal(request: WSGIRequest, pk):
     journal = get_object_or_404(Journal, pk=pk)
-    data = Article.objects.filter(journal_id=journal.pk)
+    data = Article.objects.filter(journal_id=journal.pk, is_active=True)
     return render(request, 'pages/filter.html', {
         'data': data,
+        'icon': Icon.object(),
     })
 
 
 def detail_col(request: WSGIRequest, pk):
     col = get_object_or_404(ArticleColumn, pk=pk)
-    data = Article.objects.filter(column_id=col.pk)
+    data = Article.objects.filter(column_id=col.pk, is_active=True)
     return render(request, 'pages/filter.html', {
         'data': data,
+        'icon': Icon.object(),
     })
+
+
+
+def page_not_found(request: WSGIRequest, exception, *args, **kwarg):
+    md = Moderator.get_moderator_or_None(request)
+    url = request.get_full_path().split('/')[1]
+    if md and url == 'moderator':
+        url_name = 'dashboard'
+    else:
+        url_name = 'index'
+    return render(request, 'error/404.html', {
+        'icon': Icon.object(),
+        'url_name': url_name,
+    }, status=404)
+
+def bad_request(*args, **kwargs):
+    return HttpResponse('Bad Request', status=500)

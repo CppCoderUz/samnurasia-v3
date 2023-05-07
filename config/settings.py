@@ -62,7 +62,7 @@ AUTH_USER_MODEL = 'moderator.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django_session_timeout.middleware.SessionTimeoutMiddleware',
+    # 'django_session_timeout.middleware.SessionTimeoutMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -178,4 +178,4 @@ EMAIL_HOST_USER = 'cpp.coder.uz.oa@gmail.com'
 EMAIL_HOST_PASSWORD = 'awiqafqjxdgnpflx'
 EMAIL_USE_SSL = False
 
-SESSION_EXPIRE_SECONDS = 18000
+SESSION_COOKIE_AGE = 3600 * 2

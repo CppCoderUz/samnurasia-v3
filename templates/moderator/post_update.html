@@ -15,11 +15,15 @@
                 <h4 class="card-title"> Postni tahrirlash </h4>
                 <p class="card-title-desc"> </p>
 
-                <form class="custom-validation" method="POST"> {% csrf_token %}
+                <form class="custom-validation" method="POST" enctype="multipart/form-data"> {% csrf_token %}
                     {{ form.media }}
                     <div class="mb-3">
                         <label class="form-label"> Post nomi </label>
                         {{form.title}}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"> Post uchun rasm </label>
+                        {{form.image}}
                     </div>
                     <div class="mb-3">
                         <label class="form-label"> Post haqida batafsil yozing </label>

@@ -34,7 +34,7 @@ class EslatmaAdmin(admin.ModelAdmin):
 
 @admin.register(Icon)
 class IconAdmin(admin.ModelAdmin):
-    list_display = ['image', 'pk']
+    list_display = ['pk','image']
 
 @admin.register(IjtimoiyTarmoqlar)
 class IjtimoiyTarmoqlarAdmin(admin.ModelAdmin):

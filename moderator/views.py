@@ -281,9 +281,17 @@ def post_create(request: WSGIRequest):
         
         try:
             if data_form.is_valid:
-                object = data_form.save(commit=False)
-                object.author = moderator
-                object.save()
+                title = data_form["title"].value()
+                body = data_form["body"].value()
+                image = request.FILES.get('image', None)
+
+                if title and body and image:
+                    object = Post()
+                    object.author = moderator
+                    object.title = title
+                    object.body = body
+                    object.image = image
+                    object.save()
                 messages.success(request, ''' Post saqlandi ''')
                 return redirect('all_posts')
             else:
@@ -306,7 +314,11 @@ def post_update(request: WSGIRequest, pk):
         data_form = PostForm(data=request.POST, instance=object)
         try:
             if data_form.is_valid:
-                data_form.save(commit=True)
+                object = data_form.save(commit=True)
+                image = request.FILES.get('image', None)
+                if image:
+                    object.image = image
+                    object.save()
                 messages.success(request, 'Sozlamalar saqlandi !')
                 return redirect('all_posts')   
             else:

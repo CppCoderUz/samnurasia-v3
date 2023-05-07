@@ -5,7 +5,8 @@ from .models import (
     Article,
     ArticleColumn,
     Journal,
-    Petition
+    Petition,
+    Post
 )
 
 @admin.register(Journal)
@@ -30,3 +31,8 @@ class ArticleAdmin(admin.ModelAdmin):
         'confirmed', 'first_name',
         'last_name'
     ]
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'author', 'date_time', 'image']
