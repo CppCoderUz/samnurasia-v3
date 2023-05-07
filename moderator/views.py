@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.handlers.wsgi import WSGIRequest
 
-from django.http import Http404, HttpResponse
+from django.http import Http404
 
 from django.contrib.auth import login, logout, hashers, authenticate
 from django.contrib.auth.decorators import login_required
